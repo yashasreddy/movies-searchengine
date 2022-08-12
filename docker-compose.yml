@@ -13,12 +13,11 @@ services:
     networks:
       - elastic_network
 
-  ubuntu_with_python:
-    image: ubuntu-custom
+  python:
     build:
       context: .
       dockerfile: es.Dockerfile
-    container_name: ubuntu_with_python
+    container_name: python
     ports:
       - 8888:8888
     networks:
