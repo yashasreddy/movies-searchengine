@@ -11,23 +11,23 @@ services:
     volumes:
       - elastic_data:/usr/share/elasticsearch/data
     networks:
-      - elastic
+      - elastic_network
 
   ubuntu_with_python:
+    image: ubuntu-custom
     build:
       context: .
       dockerfile: es.Dockerfile
-    image: ubuntu-custom
     container_name: ubuntu_with_python
     ports:
       - 8888:8888
     networks:
-      - elastic
+      - elastic_network
 
 volumes:
   elastic_data:
     driver: local
 
 networks:
-  elastic:
+  elastic_network:
     driver: bridge

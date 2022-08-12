@@ -19,6 +19,18 @@ RUN make altinstall
 RUN pip3.8 install --upgrade pip
 RUN pip3.8 install --upgrade setuptools
 
-RUN pip3.8 install jupyterlab
+WORKDIR /usr/src/app
 
-CMD ["python3.8 -m jupyter notebook --ip 0.0.0.0 --allow-root"]
+RUN mkdir IMDB
+
+COPY requirements.txt .
+
+RUN pip3.8 install -r requirements.txt
+
+RUN apt update && apt upgrade -y
+
+COPY ./IMDB ./IMDB
+
+COPY movies_search.ipynb .
+
+CMD ["jupyter", "lab", "--port=8888", "--no-browser", "--ip=0.0.0.0", "--allow-root"]
