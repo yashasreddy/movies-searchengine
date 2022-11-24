@@ -1,6 +1,5 @@
 ARG CODE_VERSION=3.10.5
 FROM python:${CODE_VERSION}
-
 RUN apt-get update && apt-get upgrade -y
 RUN pip install --upgrade pip
 
